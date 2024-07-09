@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 
-const connectionString = process.env.ATLAS_URI || "";
+const connectionString = process.env.ATLAS_URI || "mongodb+srv://Avuwa:FAVOUR@clustersandbox.szcpqym.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSandbox";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(connectionString, {

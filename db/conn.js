@@ -21,5 +21,7 @@ try {
 }
 
 let db = conn.db("sample_mflix");
+let db2 = conn.db("sample_train")
+
 
 export default db;

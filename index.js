@@ -1,11 +1,13 @@
 import express from "express";
 import data from "./data/data.json" assert { type: "json" };
+import movieRoutes from "./Routes/moviesRoutes.js";
 
 const app = express();
 const PORT = 7777;
 
 //middleware
 app.use(express.json());
+app.use("/movies", movieRoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello World");

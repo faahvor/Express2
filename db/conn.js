@@ -20,6 +20,6 @@ try {
   console.error(e);
 }
 
-let db = conn.db("gmc1");
+let db = conn.db("sample_mflix");
 
 export default db;

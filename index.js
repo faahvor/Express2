@@ -7,7 +7,7 @@ const PORT = 7777;
 
 //middleware
 app.use(express.json());
-app.use("/movies", movieRoutes)
+app.use("/movie", movieRoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello World");

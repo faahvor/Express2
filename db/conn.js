@@ -1,7 +1,9 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import {config} from "dotenv"
 
+config()
 
-const connectionString = process.env.ATLAS_URI || "mongodb+srv://Avuwa:FAVOUR@clustersandbox.szcpqym.mongodb.net/?retryWrites=true&w=majority&appName=ClusterSandbox";
+const connectionString = process.env.ATLAS_URI || "";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(connectionString, {
@@ -21,7 +23,5 @@ try {
 }
 
 let db = conn.db("sample_mflix");
-let db2 = conn.db("sample_train")
-
 
 export default db;

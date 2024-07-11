@@ -26,24 +26,48 @@ movieRoutes.get("/movies/:id", async (req, res) => {
   // const result = await collections.find({}).limit(20).toArray()
 });
 movieRoutes.get("/users/:id", async (req, res) => {
-    const response = new ObjectId(req.params.id);
-    const result = await db.collection("users").findOne({ _id: response });
-    if (result){
-        res.status(200).send(result)
-    }else{
-        res.status(400).json("check ur code")
-    }
-    // const result = await collections.find({}).limit(20).toArray() 
-  });
-  movieRoutes.post("/users", async(req,res)=>{
-    const data = req.body
-    let newDocument = {
-      _id:new ObjectId()
-    }
-    newDocument = {...newDocument, ...data};
-    const collection = await db.collection("users").insertOne(newDocument)
-    res.status(200).send(collection)
-  })
+  const response = new ObjectId(req.params.id);
+  const result = await db.collection("users").findOne({ _id: response });
+  if (result) {
+    res.status(200).send(result);
+  } else {
+    res.status(400).json("check ur code");
+  }
+  // const result = await collections.find({}).limit(20).toArray()
+});
+movieRoutes.post("/users", async (req, res) => {
+  const data = req.body;
+  let newDocument = {
+    _id: new ObjectId(),
+  };
+  newDocument = { ...newDocument, ...data };
+  const collection = await db.collection("users").insertOne(newDocument);
+  res.status(200).send(collection);
+});
+movieRoutes.put("/users/:id", async (req, res) => {
+  const id = new ObjectId(req.params.id);
+  const data = req.body;
+
+  try {
+    const result = await db
+      .collection("users")
+      .updateOne({ _id: id }, { $set: data });
+    res.status(200).send(result);
+  } catch (err) {
+    throw err;
+  }
+});
+movieRoutes.delete("/users/:id",async(req,res)=>{
+  const id = new ObjectId(req.params.id)
+
+  try{
+    const result = await db
+     .collection("users")
+     .deleteOne({_id:id});
+    res.status(200).send(result)
+  }catch (err){
+    throw err
+  }
+})
 
 export default movieRoutes;
- 

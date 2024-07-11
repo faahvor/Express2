@@ -35,5 +35,15 @@ movieRoutes.get("/users/:id", async (req, res) => {
     }
     // const result = await collections.find({}).limit(20).toArray() 
   });
+  movieRoutes.post("/users", async(req,res)=>{
+    const data = req.body
+    let newDocument = {
+      _id:new ObjectId()
+    }
+    newDocument = {...newDocument, ...data};
+    const collection = await db.collection("users").insertOne(newDocument)
+    res.status(200).send(collection)
+  })
 
 export default movieRoutes;
+ 
